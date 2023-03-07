@@ -45,6 +45,63 @@
   ],
   "modules": [
     {
+      "name": "plog",
+      "buildsystem": "cmake-ninja",
+      "config-opts": [
+        "-DPLOG_BUILD_SAMPLES=OFF"
+      ],
+      "cleanup": ["*"],
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://github.com/SergiusTheBest/plog.git",
+          "tag": "1.1.9",
+          "commit": "f47149410a4c927643148b96799f28b2d80d451b"
+        }
+      ]
+    },
+    {
+      "name": "usrsctp",
+      "buildsystem": "cmake-ninja",
+      "//": "Disable SCTP IP code. Packets are handle by WebRTC so we don't need it",
+      "config-opts": [
+        "-Dsctp_build_shared_lib=ON",
+        "-Dsctp_build_programs=OFF",
+        "-Dsctp_inet=OFF",
+        "-Dsctp_inet6=OFF",
+        "-Dsctp_werror=OFF",
+        "-DCMAKE_POSITION_INDEPENDENT_CODE=ON"
+      ],
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://github.com/sctplab/usrsctp.git",
+          "tag": "0.9.5.0",
+          "commit": "07f871bda23943c43c9e74cc54f25130459de830"
+        }
+      ]
+    },
+    {
+      "name": "libdatachannel",
+      "buildsystem": "cmake-ninja",
+      "config-opts": [
+        "-DNO_EXAMPLES=ON",
+        "-DNO_TESTS=ON",
+        "-DNO_WEBSOCKET=ON",
+        "-DUSE_NICE=ON",
+        "-DPREFER_SYSTEM_LIB=ON"
+      ],
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://github.com/paullouisageneau/libdatachannel.git",
+          "disable-submodules": true,
+          "tag": "v0.19.0-alpha.2",
+          "commit": "9ccf334864d9996d0e9bcd15488d3a40ac7dc46c"
+        }
+      ]
+    },
+    {
       "name": "x264",
       "config-opts": [
         "--disable-cli",
